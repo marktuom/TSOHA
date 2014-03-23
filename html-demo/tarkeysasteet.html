@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Muistilista</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/bootstrap-theme.css" rel="stylesheet">
+        <link href="../css/main.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <h1><a href="http://marktuom.users.cs.helsinki.fi/TSoHa/html-demo/etusivu.html">Muistilista</a></h1>
+        </header>
+        <form style="float: right" name="form" action="#">
+            <label class="oikeaYlakulmaValikko">
+                <input name="submit" type="submit" id="submit" value="kirjaudu ulos">
+            </label>                 
+        </form>
+        <div style="float: right" class="tiliLinkki">
+            <a href="http://marktuom.users.cs.helsinki.fi/TSoHa/html-demo/tili.html">Tilin asetukset</a>
+        </div>
+        <ul class="nav nav-tabs">
+            <li><a href="http://marktuom.users.cs.helsinki.fi/TSoHa/html-demo/etusivu.html">Askareet</a></li>
+            <li><a href="http://marktuom.users.cs.helsinki.fi/TSoHa/html-demo/luokat.html">Luokat</a></li>
+            <li class="active"><a href="#">Tärkeysasteet</a></li>
+        </ul>
+        <div class="panel panel-default taulukko">
+            <table width='100%' class="table"> 
+                <tr>
+                    <th>Tärkeysaste</th>
+                    <th>Arvo</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>Tärkeä</td>
+                    <td>5</td>
+                    <td><form action="http://marktuom.users.cs.helsinki.fi/TSoHa/html-demo/tarkeysasteet.html"><input type=submit value="Poista"></form></td>
+                </tr>
+            </table>
+        </div>       
+        <div style="margin-left: 20px">
+            <form name="Uusi" action="#" class="form-group">
+                <input type="text" name="Nimi" placeholder="Tärkeysasteen nimi" />
+                Arvo:
+                <select name="Arvo">
+                    <option>5</option>
+                    <option>4</option>
+                    <option>3</option>
+                    <option>2</option>
+                    <option>1</option>
+                </select>
+                <input type="submit" value="Luo">
+            </form>
+        </div>
+    </body>
+</html>

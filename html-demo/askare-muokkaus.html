@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Muistilista</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/bootstrap-theme.css" rel="stylesheet">
+        <link href="../css/main.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <h1><a href="http://marktuom.users.cs.helsinki.fi/TSoHa/html-demo/etusivu.html">Muistilista</a></h1>           
+        </header>
+        <form class="input-group" style="margin-left: 10px; margin-top: 20px" action="#">
+            <input type="text" name="Nimi" class="form-control" placeholder="Askareen nimi"><br>           
+            <div>
+                <b>Luokat:</b><br>
+                Luokka 1                
+                <input type="checkbox" value="true" name="luokka1" class="btn-default"><br>
+                Luokka 2   
+                <input type="checkbox" value="true" name="luokka2" class="btn-default"><br>
+            </div>
+            <div> 
+                <b>Tärkeysaste:</b>      
+                <select name="tärkeysaste">
+                    <option>Kiireellinen</option>
+                    <option>Ei tärkeä</option>
+                </select><br>
+            </div>
+            <input type="submit" class="btn btn-default" value="Tallenna">
+            <input type="submit" class="btn btn-default" value="Poista">
+        </form>
+    </body>
+</html>
