@@ -1,6 +1,6 @@
 <?php
-require 'libs/tietokantayhteys.php';
-require './libs/models/Kayttaja.php';
+require_once 'libs/tietokantayhteys.php';
+require_once './libs/models/Kayttaja.php';
 
 $sql = "SELECT id,Nimi,Salasana from Kayttaja";
 $kysely = getTietokantayhteys()->prepare($sql);

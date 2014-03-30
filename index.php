@@ -1,3 +1,2 @@
 <?php
-echo 'Täällä ei ole mitään';
-
+header('Location: kirjautuminen.php');
