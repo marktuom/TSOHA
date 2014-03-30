@@ -1,4 +1,7 @@
 <div>
+    <h1>HUOM!</h1><br><p>Kaikki tämän alla toistaiseksi staattista. Tämä sivu olemassa vain istunnon testaamista varten. Kirjaudu ulos nappi pitäisi toimia</p>
+</div>
+<div>
     <div class="suodatin">            
         <form name="luokka" action="#">
             Luokka:
@@ -17,12 +20,12 @@
         <tr>
             <th>Askare</th>
             <th>Tärkeysaste</th>
-            <th><form action="http://marktuom.users.cs.helsinki.fi/TSoHa/html-demo/askare-muokkaus.html"><input type=submit value="Uusi askare"></form></th>
+            <th><form action="#"><input type=submit value="Uusi askare"></form></th>
         </tr>
         <tr>
             <td>Siivoa</td>
             <td>Ei tärkeä</td>
-            <td><form action="http://marktuom.users.cs.helsinki.fi/TSoHa/html-demo/askare-muokkaus.html"><input type=submit value="Muokkaa"></form></td>
+            <td><form action="#"><input type=submit value="Muokkaa"></form></td>
         </tr>
     </table>
 </div>       

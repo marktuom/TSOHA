@@ -10,7 +10,7 @@
     </head>
     <body>
         <header>
-            <h1><a href="http://marktuom.users.cs.helsinki.fi/TSoHa/html-demo/etusivu.html">Muistilista</a></h1>           
+            <h1><a href="etusivu.php">Muistilista</a></h1>           
         </header>
         <form style="float: right" name="form" action="kirjauduulos.php">
             <label class="oikeaYlakulmaValikko">
@@ -18,12 +18,12 @@
             </label>          
         </form>
         <div style="float: right" class="tiliLinkki">
-            <a href="http://marktuom.users.cs.helsinki.fi/TSoHa/html-demo/tili.html">Tilin asetukset</a>
+            <a href="#">Tilin asetukset</a>
         </div>
         <ul class="nav nav-tabs">
             <li class="active"><a href="#">Askareet</a></li>
-            <li><a href="http://marktuom.users.cs.helsinki.fi/TSoHa/html-demo/luokat.html">Luokat</a></li>
-            <li><a href="http://marktuom.users.cs.helsinki.fi/TSoHa/html-demo/tarkeysasteet.html">Tärkeysasteet</a></li>
+            <li><a href="#">Luokat</a></li>
+            <li><a href="#">Tärkeysasteet</a></li>
         </ul>
         <?php
         /* HTML-rungon keskellä on sivun sisältö, 
