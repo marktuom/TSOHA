@@ -1,5 +1,6 @@
 <?php
 require_once 'libs/tietokantayhteys.php';
+
 class Kayttaja {
 
     private $id;
@@ -53,5 +54,6 @@ class Kayttaja {
             return $kayttaja;
         }
     }
+    
 
 }

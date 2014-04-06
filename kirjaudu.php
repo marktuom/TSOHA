@@ -25,6 +25,6 @@ if (empty($kayttaja)) {
         'virhe' => "Kirjautuminen epäonnistui! Antamasi tunnus tai salasana on väärä."
     ));
 } else {
-    $_SESSION['kayttaja'] = $kayttaja;
+    $_SESSION['kayttaja'] = $kayttaja->getID();
     header('Location: etusivu.php');
 }

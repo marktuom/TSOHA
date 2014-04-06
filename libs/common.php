@@ -2,12 +2,10 @@
 
 session_start();
 
-Class common {
-
-    static function onKirjautunut() {
-        return isset($_SESSION['kayttaja']);
-    }
-
+function onKirjautunut(){
+if(isset($_SESSION['kayttaja'])){
+return true;
+}
 }
 
 function naytaNakyma($sivu, $data = array()) {

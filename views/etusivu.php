@@ -1,31 +1,47 @@
 <div>
-    <h1>HUOM!</h1><br><p>Kaikki tämän alla toistaiseksi staattista. Tämä sivu olemassa vain istunnon testaamista varten. Kirjaudu ulos nappi pitäisi toimia</p>
+    <!--    <div class="suodatin">            
+            <form name="luokka" action="#">
+                Luokka:
+                <select class="">
+                    <option value="">Kaikki</option>
+                    <option value="Tärkeä">Tärkeä</option>
+                    <option value="Tavallinen">Tavallinen</option>
+                    <option value="Ei tärkeä">Ei tärkeä</option>
+                </select>
+                <input type="submit" value="Suodata">
+            </form>
+        </div>-->
 </div>
-<div>
-    <div class="suodatin">            
-        <form name="luokka" action="#">
-            Luokka:
-            <select class="">
-                <option value="">Kaikki</option>
-                <option value="Tärkeä">Tärkeä</option>
-                <option value="Tavallinen">Tavallinen</option>
-                <option value="Ei tärkeä">Ei tärkeä</option>
-            </select>
-            <input type="submit" value="Suodata">
-        </form>
-    </div>
-</div>
+<?php if (!empty($_SESSION['ilmoitus'])): ?>
+  <div class="alert alert-danger">
+    <?php echo $_SESSION['ilmoitus']; ?>
+  </div>
+<?php
+  // Samalla kun viesti näytetään, se poistetaan istunnosta,
+  // ettei se näkyisi myöhemmin jollain toisella sivulla uudestaan.
+  unset($_SESSION['ilmoitus']); 
+  endif;
+?>
 <div class="panel panel-default taulukko">
     <table width='100%' class="table"> 
         <tr>
             <th>Askare</th>
             <th>Tärkeysaste</th>
-            <th><form action="#"><input type=submit value="Uusi askare"></form></th>
-        </tr>
-        <tr>
-            <td>Siivoa</td>
-            <td>Ei tärkeä</td>
-            <td><form action="#"><input type=submit value="Muokkaa"></form></td>
-        </tr>
+            <th><a href="askare.php">Uusi Askare</a></th>
+        </tr>     
+        <?php foreach ($data->askareet as $askare): ?>
+            <tr>
+                <td><?php echo $askare->getNimi(); ?></td>
+                <td><?php echo $askare->getTarkeysaste(); ?></td>
+                <td><a href="askare.php?id=<?php echo $askare->getId() ?>">Muokkaa</a></td>
+            </tr>
+        <?php endforeach; ?>
+
     </table>
+    <?php
+    if (empty($data->askareet)) {
+        echo '<p>EI ASKAREITA</p>';
+    }
+    ?>
+
 </div>       
