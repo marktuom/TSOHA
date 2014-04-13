@@ -12,11 +12,11 @@ if (isset($_POST['talleta'])) {
 
     if ($uusiaskare->onkoKelvollinen() && empty($_POST['id'])) {
         $uusiaskare->lisaaAskare();
-        $_SESSION['ilmoitus'] = "Askare lisätty onnistuneesti.";
+        $_SESSION['ilmoitus'] = "Askare lisätty.";
         header('Location: etusivu.php');
     } else if ($uusiaskare->onkoKelvollinen() && isset($_POST['id'])) {
         $uusiaskare->paivitaAskare();
-        $_SESSION['ilmoitus'] = "Askare päivitetty onnistuneesti.";
+        $_SESSION['ilmoitus'] = "Askare päivitetty.";
         header('Location: etusivu.php');
     } else {
 
@@ -34,7 +34,7 @@ if (isset($_POST['poista'])) {
     $uusiaskare = new Askare();
     $uusiaskare->setID($_POST['id']);
     $uusiaskare->poistaAskare();
-    $_SESSION['ilmoitus'] = "Askare poistettu onnistuneesti";
+    $_SESSION['ilmoitus'] = "Askare poistettu.";
     header('Location: etusivu.php');
 }
 

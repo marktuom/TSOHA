@@ -10,15 +10,17 @@
     </head>
     <body>
         <div>
+            <a href="kirjautuminen.php" style="margin-left: 5px">takaisin</a>
             <h1>
-                Kirjaudu sisään
+                Rekisteröidy
             </h1>
         </div>
         <div>
-            <form class="input-group" style="margin-left: 10px" method="POST" action="kirjaudu.php">
+            <form class="input-group" style="margin-left: 10px" method="POST" action="rekisteroidy.php">
                 <input type="text" name="Nimi" class="form-control" placeholder="Nimi"  value="<?php echo $data->kayttaja; ?>"><br>
-                <input type="password" name="Salasana" class="form-control" placeholder="Salasana" ><br>
-                <input type="submit" class="btn btn-default" value="Kirjaudu"> <input type="submit" class="btn btn-default" name="rekisteroidy" value="Rekisteröidy">
+                <input type="password" name="Salasana1" class="form-control" placeholder="Salasana" ><br>
+                <input type="password" name="Salasana2" class="form-control" placeholder="Toista Salasana" ><br>
+                <input type="submit" class="btn btn-default" name="rekisteroidy" value="Rekisteröidy">
             </form>
         </div>
         <?php if (!empty($data->virhe)): ?>
@@ -26,5 +28,3 @@
         <?php endif; ?>
     </body>
 </html>
-
-

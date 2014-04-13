@@ -1,6 +1,9 @@
 <?php
 require_once 'libs/common.php';
 require_once 'libs/models/Kayttaja.php';
+if(isset($_POST['rekisteroidy'])){
+    header('Location: rekisteroityminen.php');
+}
 
 if (empty($_POST['Nimi'])) {
     naytaKirjautumisNakyma(array(

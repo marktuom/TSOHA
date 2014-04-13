@@ -19,3 +19,9 @@ function naytaKirjautumisNakyma($data = array()) {
     require 'views/kirjautuminen.php';
     exit();
 }
+
+function naytaRekisteroitymisNakyma($data = array()) {
+    $data = (object) $data;
+    require 'views/rekisteroityminen.php';
+    exit();
+}

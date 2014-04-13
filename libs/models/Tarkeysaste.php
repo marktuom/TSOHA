@@ -63,6 +63,12 @@ class Tarkeysaste {
         }
         return $ok;
     }
+    
+    public static function poistaTarkeysaste($id) {
+        $sql = "DELETE FROM Tarkeysaste where id = ?";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $kysely->execute(array($id));
+    }
 
     public static function etsiTarkeysaste($id){
         $sql = "select * from Tarkeysaste where Kayttaja_id = ? and id = ?";

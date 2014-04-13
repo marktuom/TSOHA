@@ -18,12 +18,12 @@
             </label>          
         </form>
         <div style="float: right" class="tiliLinkki">
-            <a href="#">Tilin asetukset</a>
+            <a href="tili.php">Tilin asetukset</a>
         </div>
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#">Askareet</a></li>
-            <li><a href="#">Luokat</a></li>
-            <li><a href="#">Tärkeysasteet</a></li>
+            <li <?php if($sivu == 'etusivu'){echo 'class="active"';} ?>><a href="etusivu.php">Askareet</a></li>
+            <li <?php if($sivu == 'luokka'){echo 'class="active"';} ?>><a href="luokka.php">Luokat</a></li>
+            <li <?php if($sivu == 'tarkeysaste'){echo 'class="active"';} ?>><a href="tarkeysaste.php">Tärkeysasteet</a></li>
         </ul>
         <?php
         /* HTML-rungon keskellä on sivun sisältö, 
