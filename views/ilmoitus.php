@@ -1,5 +1,5 @@
 <?php if (!empty($_SESSION['ilmoitus'])): ?>
-  <div class="alert alert-danger">
+  <div class="alert alert-success">
     <?php echo $_SESSION['ilmoitus']; ?>
   </div>
 <?php
@@ -7,4 +7,3 @@
   // ettei se näkyisi myöhemmin jollain toisella sivulla uudestaan.
   unset($_SESSION['ilmoitus']); 
   endif;
-?>

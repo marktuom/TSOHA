@@ -1,4 +1,5 @@
 <?php
+
 require_once 'libs/tietokantayhteys.php';
 
 class Kayttaja {
@@ -39,6 +40,24 @@ class Kayttaja {
         $this->salasana = $salasana;
     }
 
+    public static function lisaaKayttaja($nimi, $salasana) {
+        $sql = "INSERT INTO Kayttaja(Nimi, Salasana) VALUES(?,?)";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $kysely->execute(array($nimi, $salasana));
+    }
+
+    public static function nimiVarattu($nimi) {
+        $sql = "SELECT * from Kayttaja where Nimi = ? LIMIT 1";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $kysely->execute(array($nimi));
+        $tulos = $kysely->fetchObject();
+        if ($tulos == null) {
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+    }
+
     public static function etsiKayttajaTunnuksilla($nimi1, $salasana1) {
         $sql = "SELECT id, Nimi, Salasana from Kayttaja where Nimi = ? AND Salasana = ? LIMIT 1";
         $kysely = getTietokantayhteys()->prepare($sql);
@@ -55,5 +74,18 @@ class Kayttaja {
         }
     }
     
+    public static function muutasalasana($salasana) {
+        $sql = "UPDATE Kayttaja SET Salasana = ? where id = ?";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        session_start();
+        $kayttaja = (int) $_SESSION['kayttaja'];
+        $kysely->execute(array($salasana, $kayttaja));
+    }
+    
+    public static function poistaTili($id) {
+        $sql = "DELETE FROM Kayttaja where id = ?";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $kysely->execute(array($id));
+    }
 
 }

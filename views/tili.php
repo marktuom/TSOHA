@@ -1,12 +1,13 @@
-<h1>EI TOIMI VIELÄ</h1>
+<?php include 'views/ilmoitus.php'; ?>
 <div>
-    <form class="input-group" style="margin-left: 10px" action="#">
-        <input type="text" name="uusiSalasana" class="form-control" placeholder="Uusi salasana" >
+    <form class="input-group" style="margin-left: 10px" method="POST" action="uusisalasana.php">
+        <input type="password" name="uusiSalasana1" class="form-control" placeholder="Uusi salasana" >
+        <input type="password" name="uusiSalasana2" class="form-control" placeholder="Toista salasana" >
         <input type="submit" class="btn btn-default" value="Vaihda salasana"> 
     </form>
 </div>
 <div>
-    <form class="input-group" style="margin: 10px" action="#">        
+    <form class="input-group" style="margin: 10px" action="tilinpoisto.php">        
         <input name="submit" type="submit" id="submit" value="Poista Tili">      
     </form>
 </div>

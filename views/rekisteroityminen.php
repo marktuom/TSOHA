@@ -10,7 +10,6 @@
     </head>
     <body>
         <div>
-            <a href="kirjautuminen.php" style="margin-left: 5px">takaisin</a>
             <h1>
                 Rekisteröidy
             </h1>
@@ -21,6 +20,8 @@
                 <input type="password" name="Salasana1" class="form-control" placeholder="Salasana" ><br>
                 <input type="password" name="Salasana2" class="form-control" placeholder="Toista Salasana" ><br>
                 <input type="submit" class="btn btn-default" name="rekisteroidy" value="Rekisteröidy">
+                <input type="submit" class="btn btn-default" name="peruuta" value="Peruuta">
+                
             </form>
         </div>
         <?php if (!empty($data->virhe)): ?>

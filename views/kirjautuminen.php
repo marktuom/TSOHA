@@ -9,6 +9,7 @@
         <link href="css/main.css" rel="stylesheet">
     </head>
     <body>
+        <?php include 'ilmoitus.php'; ?>
         <div>
             <h1>
                 Kirjaudu sisään
