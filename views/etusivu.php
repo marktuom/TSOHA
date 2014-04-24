@@ -31,7 +31,7 @@
     </table>
     <?php
     if (empty($data->askareet)) {
-        echo '  <p>EI ASKAREITA</p>';
+        echo '<h3 style="text-align: center">EI ASKAREITA</3h>';
     }
     ?>
 

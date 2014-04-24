@@ -2,7 +2,7 @@
 <div class="panel panel-default taulukko">
     <table width='100%' class="table"> 
         <tr>
-            <th>Tärkeysaste</th>
+            <th>Tärkeysasteen nimi</th>
             <th>Arvo</th>
             <th></th>
         </tr>
@@ -14,9 +14,11 @@
                     <td><form action="tarkeysasteenpoisto.php" method="POST"><input type="hidden" name="id" value="<?php echo $tarkeysaste->getID(); ?>"><input type=submit value="Poista"></form></td>
                 </tr>
             <?php endforeach; ?>
-        <?php else: echo 'Ei tärkeysasteita'; ?>
         <?php endif; ?>
     </table>
+    <?php if (empty($data->tarkeysasteet)) {
+         echo '<h3 style="text-align: center">EI TÄRKEYSASTEITA</3h>';
+    } ?>
 </div>       
 <div style="margin-left: 20px">
     <form action="tarkeysasteenlisays.php" method="POST" class="form-group">
@@ -34,7 +36,7 @@
             <option>2</option>
             <option>1</option>
         </select>
-        <input type="submit" value="Luo">
+        <input type="submit" value="Luo uusi">
     </form>
 </div>
 <?php if (!empty($data->virhe)): ?>

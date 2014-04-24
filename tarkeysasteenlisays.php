@@ -6,10 +6,10 @@ if (trim($_POST['Nimi']) == '') {
     $virhe = "Nimi ei saa olla tyhjä!";
 }
 if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $_POST['Nimi'])) {
-    $virhe = "Älä käytä nimessä erikoismerkkejä!";
+    $virhe = "Nimi ei saa sisältää erikoismerkkejä!";
 } 
 if(isset($virhe)){
-    naytaNakyma($sivu, array(
+    naytaNakyma('tarkeysaste', array(
     'virhe' => $virhe,
     'tarkeysasteet' => $tarkeysasteet
 ));

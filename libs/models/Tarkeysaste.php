@@ -77,7 +77,6 @@ class Tarkeysaste {
         $kayttaja = (int) $_SESSION['kayttaja'];
         $kysely->execute(array($kayttaja, $id));
         $tulos = $kysely->fetchObject();
-        return $tulos;
-        
+        return $tulos;   
     } 
 }
