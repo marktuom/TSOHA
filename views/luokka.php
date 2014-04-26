@@ -16,7 +16,7 @@
         <?php endif; ?>
     </table>
     <?php if (empty($data->luokat)) {
-         echo '<h3 style="text-align: center">EI LUOKKIA</3h>';
+         echo '<p style="text-align: center">Ei Luokkia</p>';
     } ?>
 </div>       
 <div style="margin-left: 20px">

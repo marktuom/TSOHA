@@ -68,8 +68,8 @@ class Kayttaja {
         } else {
             $kayttaja = new Kayttaja();
             $kayttaja->setId($tulos->id);
-            $kayttaja->setNimi($tulos->Nimi);
-            $kayttaja->setSalasana($tulos->Salasana);
+            $kayttaja->setNimi($tulos->nimi);
+            $kayttaja->setSalasana($tulos->salasana);
             return $kayttaja;
         }
     }

@@ -2,6 +2,7 @@
 
 require_once 'libs/tietokantayhteys.php';
 require_once 'libs/models/Kayttaja.php';
+require_once 'libs/models/Luokka.php';
 
 class Askare {
 
@@ -56,6 +57,20 @@ class Askare {
         session_start();
         $kayttaja = (int) $_SESSION['kayttaja'];
         $kysely->execute(array($kayttaja));
+        $askareet = array();
+        foreach ($kysely->fetchAll(PDO::FETCH_OBJ) as $tulos) {
+            $askare = new Askare($tulos->id, $tulos->animi, $tulos->tnimi, NIL);
+            $askareet[] = $askare;
+        }
+        return $askareet;
+    }
+
+    public static function getSuodatettuAskarelistaus($luokka) {
+        $sql = "SELECT Askare.id, Askare.Nimi as animi, Tarkeysaste.Nimi as tnimi, Tarkeysaste.Arvo FROM Askare LEFT OUTER JOIN Tarkeysaste ON Tarkeysaste_id = Tarkeysaste.id, Askareenluokka WHERE Askare.Kayttaja_id = ? AND Askare.id = Askareenluokka.Askare_id AND Askareenluokka.Luokka_id = ? ORDER BY Arvo DESC";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        session_start();
+        $kayttaja = (int) $_SESSION['kayttaja'];
+        $kysely->execute(array($kayttaja, $luokka));
         $askareet = array();
         foreach ($kysely->fetchAll(PDO::FETCH_OBJ) as $tulos) {
             $askare = new Askare($tulos->id, $tulos->animi, $tulos->tnimi, NIL);
@@ -124,5 +139,30 @@ class Askare {
         $kysely = getTietokantayhteys()->prepare($sql);
         $kysely->execute(array($this->getID()));
     }
-
+    
+     public function lisaaLuokka($luokka) {
+        $sql = "INSERT INTO Askareenluokka(Askare_id, Luokka_id) VALUES(?,?)";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $kysely->execute(array($this->getID(), $luokka));
+    }
+    
+    public function poistaLuokka($luokka) {
+        $sql = "DELETE FROM Askareenluokka where Askare_id = ? AND Luokka_id = ?";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        $kysely->execute(array($this->getID(), $luokka));
+    }
+    
+    public function haeLuokat() {       
+        $sql = "SELECT id, Nimi FROM Luokka where id in (select Luokka_id from Askareenluokka where Askare_id = ?) and Kayttaja_id = ?";
+        $kysely = getTietokantayhteys()->prepare($sql);
+        session_start();
+        $kayttaja = (int) $_SESSION['kayttaja'];
+        $kysely->execute(array($this->id,$kayttaja));
+        $luokat = array();
+        foreach ($kysely->fetchAll(PDO::FETCH_OBJ) as $tulos) {
+            $luokka = new Luokka($tulos->id, $tulos->nimi);
+            $luokat[] = $luokka;
+        }
+        return $luokat;
+    }
 }

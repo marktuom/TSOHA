@@ -16,9 +16,11 @@
             <?php endforeach; ?>
         <?php endif; ?>
     </table>
-    <?php if (empty($data->tarkeysasteet)) {
-         echo '<h3 style="text-align: center">EI TÄRKEYSASTEITA</3h>';
-    } ?>
+    <?php
+    if (empty($data->tarkeysasteet)) {
+        echo '<p style="text-align: center">Ei tärkeysasteita</p>';
+    }
+    ?>
 </div>       
 <div style="margin-left: 20px">
     <form action="tarkeysasteenlisays.php" method="POST" class="form-group">
@@ -38,6 +40,7 @@
         </select>
         <input type="submit" value="Luo uusi">
     </form>
+    <p>Ohje: Mitä suurempi arvo, sitä suurempi prioriteetti.</p>
 </div>
 <?php if (!empty($data->virhe)): ?>
     <div class="alert alert-danger"><?php echo $data->virhe; ?></div>

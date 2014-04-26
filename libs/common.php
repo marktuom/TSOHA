@@ -2,10 +2,8 @@
 
 session_start();
 
-function onKirjautunut(){
-if(isset($_SESSION['kayttaja'])){
-return true;
-}
+function onKirjautunut() {
+    return isset($_SESSION['kayttaja']);
 }
 
 function naytaNakyma($sivu, $data = array()) {

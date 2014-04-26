@@ -29,5 +29,6 @@ if (empty($kayttaja)) {
     ));
 } else {
     $_SESSION['kayttaja'] = $kayttaja->getID();
+    $_SESSION['ilmoitus'] = "Tervetuloa, " . $kayttaja->getNimi() . "!";
     header('Location: etusivu.php');
 }

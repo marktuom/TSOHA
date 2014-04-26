@@ -1,7 +1,7 @@
 <?php
 
-require 'libs/common.php';
-require 'libs/models/Luokka.php';
+require_once 'libs/common.php';
+require_once 'libs/models/Luokka.php';
 $sivu = 'luokka';
 
 if (onKirjautunut()) {
