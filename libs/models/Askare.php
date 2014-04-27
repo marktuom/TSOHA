@@ -12,6 +12,7 @@ class Askare {
     private $luokat;
     private $virheet = array();
 
+//Konstruktori, setterit ja getterit
     public function __construct($id, $nimi, $tarkeysaste, $luokat) {
         $this->id = $id;
         $this->nimi = $nimi;
@@ -51,6 +52,7 @@ class Askare {
         $this->luokat = $luokat;
     }
 
+    // Kaikkien käyttäjän askareiden haku tietokannasta
     public static function getAskarelistaus() {
         $sql = "SELECT Askare.id, Askare.Nimi as animi, Tarkeysaste.Nimi as tnimi, Tarkeysaste.Arvo FROM Askare LEFT OUTER JOIN Tarkeysaste ON Tarkeysaste_id = Tarkeysaste.id WHERE Askare.Kayttaja_id = ? ORDER BY Arvo DESC";
         $kysely = getTietokantayhteys()->prepare($sql);
@@ -65,6 +67,7 @@ class Askare {
         return $askareet;
     }
 
+    //Kaikkien tiettyyn luokkaan kuuluvien, tietyn käyttäjän askareiden haku tietokannasta
     public static function getSuodatettuAskarelistaus($luokka) {
         $sql = "SELECT Askare.id, Askare.Nimi as animi, Tarkeysaste.Nimi as tnimi, Tarkeysaste.Arvo FROM Askare LEFT OUTER JOIN Tarkeysaste ON Tarkeysaste_id = Tarkeysaste.id, Askareenluokka WHERE Askare.Kayttaja_id = ? AND Askare.id = Askareenluokka.Askare_id AND Askareenluokka.Luokka_id = ? ORDER BY Arvo DESC";
         $kysely = getTietokantayhteys()->prepare($sql);
@@ -79,32 +82,24 @@ class Askare {
         return $askareet;
     }
 
-    public static function getAskareidenMaara() {
-        $sql = "SELECT COUNT(id) FROM Askare";
-        $kysely = getTietokantayhteys()->prepare($sql);
-        $kysely->execute();
-        $maara = $kysely->fetchColumn();
-        return $maara;
-    }
-
+    //Askareen lisäys tietokantaan
     public function lisaaAskare() {
         $sql = "INSERT INTO Askare(nimi, Kayttaja_id, Tarkeysaste_id) VALUES(?,?,?) RETURNING id";
         $kysely = getTietokantayhteys()->prepare($sql);
         session_start();
         $kayttaja = (int) $_SESSION['kayttaja'];
-        $ok = $kysely->execute(array($this->getNimi(), $kayttaja, $this->getTarkeysaste()));
-        if ($ok) {
-            $this->id = $kysely->fetchColumn();
-        }
-        return $ok;
+        $kysely->execute(array($this->getNimi(), $kayttaja, $this->getTarkeysaste()));   
+        $tulos = $kysely->fetch(PDO::FETCH_ASSOC);
+        return $tulos["id"];
     }
 
+    //askareen tietojen virhetarkistus
     public function onkoKelvollinen() {
         if (trim($this->nimi) == '') {
-            $this->virheet['nimi'] = "Askareella tulee olla nimi!";
+            $this->virheet['nimi'] = "Nimi ei saa olla tyhjä!";
         } else {
             if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $this->nimi)) {
-                $this->virheet['nimi'] = "Älä käytä erikoismerkkejä!";
+                $this->virheet['nimi'] = "Nimessä ei saa käyttää erikoismerkkejä!";
             } else {
                 unset($this->virheet['nimi']);
             }
@@ -112,10 +107,12 @@ class Askare {
         return empty($this->virheet);
     }
 
+    //metodi, joka palauttaa luokan virheet
     public function getVirheet() {
         return $this->virheet;
     }
 
+    //Yhden askareen haku tietokannasta sen id numeron perusteella
     public static function getAskare($id) {
         $sql = "select * from Askare where Kayttaja_id = ? and id = ?";
         $kysely = getTietokantayhteys()->prepare($sql);
@@ -126,6 +123,7 @@ class Askare {
         return new Askare($tulos->id, $tulos->nimi, $tulos->tarkeysaste_id, NIL);
     }
 
+    //Yhden askareen tietojen päivitys
     public function paivitaAskare() {
         $sql = "UPDATE Askare SET Nimi = ?, Tarkeysaste_id = ? where id = ?";
         $kysely = getTietokantayhteys()->prepare($sql);
@@ -134,30 +132,34 @@ class Askare {
         $kysely->execute(array($this->getNimi(), $this->getTarkeysaste(), $this->getID()));
     }
 
+    //askareen poistaminen
     public function poistaAskare() {
         $sql = "DELETE FROM Askare where id = ?";
         $kysely = getTietokantayhteys()->prepare($sql);
         $kysely->execute(array($this->getID()));
     }
-    
-     public function lisaaLuokka($luokka) {
+
+    //Luokan lisääminen askareelle
+    public function lisaaLuokka($luokka) {
         $sql = "INSERT INTO Askareenluokka(Askare_id, Luokka_id) VALUES(?,?)";
         $kysely = getTietokantayhteys()->prepare($sql);
         $kysely->execute(array($this->getID(), $luokka));
     }
-    
+
+    //Luokan poistaminen askareelta
     public function poistaLuokka($luokka) {
         $sql = "DELETE FROM Askareenluokka where Askare_id = ? AND Luokka_id = ?";
         $kysely = getTietokantayhteys()->prepare($sql);
         $kysely->execute(array($this->getID(), $luokka));
     }
-    
-    public function haeLuokat() {       
+
+    //Kaikkien askareeseen liittyvien luokkien haku
+    public function haeLuokat() {
         $sql = "SELECT id, Nimi FROM Luokka where id in (select Luokka_id from Askareenluokka where Askare_id = ?) and Kayttaja_id = ?";
         $kysely = getTietokantayhteys()->prepare($sql);
         session_start();
         $kayttaja = (int) $_SESSION['kayttaja'];
-        $kysely->execute(array($this->id,$kayttaja));
+        $kysely->execute(array($this->id, $kayttaja));
         $luokat = array();
         foreach ($kysely->fetchAll(PDO::FETCH_OBJ) as $tulos) {
             $luokka = new Luokka($tulos->id, $tulos->nimi);
@@ -165,4 +167,5 @@ class Askare {
         }
         return $luokat;
     }
+
 }
