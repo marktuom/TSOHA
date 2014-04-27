@@ -5,6 +5,11 @@ require_once 'libs/models/Askare.php';
 require_once 'libs/models/Tarkeysaste.php';
 require_once 'libs/models/Luokka.php';
 
+if (!onKirjautunut() || (empty($_POST['talleta']) && empty($_POST['peruuta']))) {
+     header('Location: index.php');
+     exit();
+}
+
 //jos painettii talleta näppäintä
 if (isset($_POST['talleta'])) {
     $uusiaskare = new Askare();

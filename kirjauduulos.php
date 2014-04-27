@@ -1,7 +1,10 @@
 <?php
+require_once 'libs/common.php';
 
-//Avataan istunto
-session_start();
+if (!onKirjautunut()) {
+     header('Location: index.php');
+     exit();
+}
 
 //Poistetaan istunnosta merkintä kirjautuneesta käyttäjästä -> Kirjaudutaan ulos
 unset($_SESSION['kayttaja']); 

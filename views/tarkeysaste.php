@@ -32,13 +32,13 @@
             <option>8</option>
             <option>7</option>
             <option>6</option>
-            <option>5</option>
+            <option selected="selected">5</option>
             <option>4</option>
             <option>3</option>
             <option>2</option>
             <option>1</option>
         </select>
-        <input type="submit" value="Luo uusi">
+        <input name="submit" type="submit" value="Luo uusi">
     </form>
     <p>Ohje: Mitä suurempi arvo, sitä suurempi prioriteetti.</p>
 </div>

@@ -1,9 +1,17 @@
 <?php
 require_once 'libs/common.php';
 require_once 'libs/models/Kayttaja.php';
+
+if (onKirjautunut()) {
+    header('Location: etusivu.php');
+} 
+
+//Jos painettii rekisteröitymispainiketta
 if(isset($_POST['rekisteroidy'])){
     header('Location: rekisteroityminen.php');
+    exit();
 }
+
 
 if (empty($_POST['Nimi'])) {
     naytaKirjautumisNakyma(array(

@@ -3,6 +3,10 @@
 require 'libs/common.php';
 require 'libs/models/Luokka.php';
 
+if (!onKirjautunut()) {
+     header('Location: index.php');
+     exit();
+}
 
 //Tutkitaan onko annettu nimi luokalle kelvollinen
 if (trim($_POST['Nimi']) == '') {

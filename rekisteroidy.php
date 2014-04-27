@@ -2,8 +2,11 @@
 
 require_once 'libs/common.php';
 require_once 'libs/models/Kayttaja.php';
+
+//jos painettiin peruuta ohjataan takaisin
 if (isset($_POST['peruuta'])) {
     header('Location: kirjautuminen.php');
+    exit();
 }
 
 //Tarkistetaan onko nimi kelvollinen

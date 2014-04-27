@@ -6,6 +6,9 @@
         <input type="submit" class="btn btn-default" value="Vaihda salasana"> 
     </form>
 </div>
+<?php if (!empty($data->virhe)): ?>
+    <div class="alert alert-danger"><?php echo $data->virhe; ?></div>
+<?php endif; ?>
 <div>
     <form class="input-group" style="margin: 10px" action="tilinpoisto.php">        
         <input name="submit" type="submit" id="submit" value="Poista Tili">      
