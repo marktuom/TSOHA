@@ -14,7 +14,7 @@ class Kayttaja {
         $this->salasana = $salasana;
     }
 
-    /* Tähän gettereitä ja settereitä */
+    //setterit ja getterit
 
     public function getID() {
         return $this->id;
@@ -40,12 +40,16 @@ class Kayttaja {
         $this->salasana = $salasana;
     }
 
+    
+    //Uuden käyttäjän lisäys tietokantaan
     public static function lisaaKayttaja($nimi, $salasana) {
         $sql = "INSERT INTO Kayttaja(Nimi, Salasana) VALUES(?,?)";
         $kysely = getTietokantayhteys()->prepare($sql);
         $kysely->execute(array($nimi, $salasana));
     }
 
+    
+    //Tutkitaan löytyykö jonkin niminen käyttäjä tietokannasta
     public static function nimiVarattu($nimi) {
         $sql = "SELECT * from Kayttaja where Nimi = ? LIMIT 1";
         $kysely = getTietokantayhteys()->prepare($sql);
@@ -58,6 +62,8 @@ class Kayttaja {
         }
     }
 
+    
+    //Käyttäjän hakeminen käyttäjätunnuksella ja salasanalla
     public static function etsiKayttajaTunnuksilla($nimi1, $salasana1) {
         $sql = "SELECT id, Nimi, Salasana from Kayttaja where Nimi = ? AND Salasana = ? LIMIT 1";
         $kysely = getTietokantayhteys()->prepare($sql);
@@ -74,6 +80,7 @@ class Kayttaja {
         }
     }
     
+    //Salasanan päivittäminen
     public static function muutasalasana($salasana) {
         $sql = "UPDATE Kayttaja SET Salasana = ? where id = ?";
         $kysely = getTietokantayhteys()->prepare($sql);
@@ -82,6 +89,7 @@ class Kayttaja {
         $kysely->execute(array($salasana, $kayttaja));
     }
     
+    //Käyttäjän poistaminen
     public static function poistaTili($id) {
         $sql = "DELETE FROM Kayttaja where id = ?";
         $kysely = getTietokantayhteys()->prepare($sql);

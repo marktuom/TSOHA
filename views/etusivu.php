@@ -1,7 +1,7 @@
 <?php include 'views/ilmoitus.php'; ?>
 <!--Askareen lisäysnappi-->
 <div class="nappi">
-    <form action="askare.php"><input type=submit value="Uusi askare"></form>
+    <form action="uusiaskare.php"><input type=submit value="Uusi askare"></form>
 </div>
 <!--Suodatin askareille-->
 <div class="suodatin">            

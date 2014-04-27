@@ -8,6 +8,7 @@ class Tarkeysaste {
     private $nimi;
     private $arvo;
 
+    //setterit ja getterit
     public function getID() {
         return $this->id;
     }
@@ -38,6 +39,7 @@ class Tarkeysaste {
         $this->arvo = $arvo;
     }
 
+    //Hakee käyttäjän tärkeysasteet tietokannasta
     public static function getTarkeysAsteet() {
         $sql = "SELECT id, Nimi, Arvo FROM Tarkeysaste WHERE Kayttaja_id = ? ORDER BY Arvo DESC";
         $kysely = getTietokantayhteys()->prepare($sql);
@@ -52,6 +54,7 @@ class Tarkeysaste {
         return $asteet;
     }
     
+    //lisää tärkeysasteen tietokantaan
     public function lisaaTarkeysaste() {
         $sql = "INSERT INTO Tarkeysaste(Nimi, Kayttaja_id, Arvo) VALUES(?,?,?) RETURNING id";
         $kysely = getTietokantayhteys()->prepare($sql);
@@ -64,12 +67,14 @@ class Tarkeysaste {
         return $ok;
     }
     
+    //Poistaa tärkeysasteen tietokannasta
     public static function poistaTarkeysaste($id) {
         $sql = "DELETE FROM Tarkeysaste where id = ?";
         $kysely = getTietokantayhteys()->prepare($sql);
         $kysely->execute(array($id));
     }
 
+    //etsii ja palauttaa tärkeysasteen tietokannasta
     public static function etsiTarkeysaste($id){
         $sql = "select * from Tarkeysaste where Kayttaja_id = ? and id = ?";
         $kysely = getTietokantayhteys()->prepare($sql);

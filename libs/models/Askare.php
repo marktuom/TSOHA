@@ -155,14 +155,14 @@ class Askare {
 
     //Kaikkien askareeseen liittyvien luokkien haku
     public function haeLuokat() {
-        $sql = "SELECT id, Nimi FROM Luokka where id in (select Luokka_id from Askareenluokka where Askare_id = ?) and Kayttaja_id = ?";
+        $sql = "SELECT id FROM Luokka where id in (select Luokka_id from Askareenluokka where Askare_id = ?) and Kayttaja_id = ?";
         $kysely = getTietokantayhteys()->prepare($sql);
         session_start();
         $kayttaja = (int) $_SESSION['kayttaja'];
         $kysely->execute(array($this->id, $kayttaja));
         $luokat = array();
         foreach ($kysely->fetchAll(PDO::FETCH_OBJ) as $tulos) {
-            $luokka = new Luokka($tulos->id, $tulos->nimi);
+            $luokka = $tulos->id;
             $luokat[] = $luokka;
         }
         return $luokat;

@@ -7,6 +7,7 @@ class Luokka {
     private $id;
     private $nimi;
 
+    // setterit ja getterit
     public function getID() {
         return $this->id;
     }
@@ -28,8 +29,8 @@ class Luokka {
         $this->nimi = $nimi;
     }
 
+    //lisää luokan tietokantaan
      public static function lisaaLuokka($nimi) {
-         echo '1';
         $sql = "INSERT INTO Luokka(Nimi, Kayttaja_id) VALUES(?,?)";
         $kysely = getTietokantayhteys()->prepare($sql);
         session_start();
@@ -37,6 +38,7 @@ class Luokka {
         $kysely->execute(array($nimi, $kayttaja));
     }
     
+    //Palauttaa kaikki käyttäjän luokat
     public static function getLuokat() {
         $sql = "SELECT id, Nimi FROM Luokka WHERE Kayttaja_id = ?";
         $kysely = getTietokantayhteys()->prepare($sql);
@@ -51,6 +53,7 @@ class Luokka {
         return $luokat;
     }
 
+    //poistaa luokan tietokannasta
     public static function poistaLuokka($id) {
         $sql = "DELETE FROM Luokka where id = ?";
         $kysely = getTietokantayhteys()->prepare($sql);
