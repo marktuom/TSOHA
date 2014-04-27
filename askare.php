@@ -7,7 +7,7 @@ require_once 'libs/models/Luokka.php';
 
 $sivu = 'askare';
 if (onKirjautunut()) {
-    $askare = Askare::getAskare($_GET['id']);
+    $askare = Askare::getAskare($_POST['id']);
     $luokat = Luokka::getLuokat();
     $askareenluokat = $askare->haeLuokat();
     $askare->setLuokat($askareenluokat);

@@ -9,7 +9,7 @@
             <option value="">Ei Tärkeysastetta</option>
             <?php foreach ($data->asteet as $aste): ?>
                 <option <?php
-                if ($data->askare->getTarkeysaste() === $aste->getID()) {
+                if ($data->askare->getTarkeysaste() == $aste->getID()) {
                     echo 'selected="selected"';
                 }
                 ?> value="<?php echo $aste->getID(); ?>"><?php echo $aste->getNimi(); ?></option>

@@ -32,7 +32,7 @@
             <tr>
                 <td><?php echo $askare->getNimi(); ?></td>
                 <td><?php echo $askare->getTarkeysaste(); ?></td>
-                <td><form action="askare.php" method="GET"><input type="hidden" name="id" value="<?php echo $askare->getID(); ?>"><input type=submit value="Muokkaa"></form></td>
+                <td><form action="askare.php" method="POST"><input type="hidden" name="id" value="<?php echo $askare->getID(); ?>"><input type=submit value="Muokkaa"></form></td>
                 <td><form action="askareenpoisto.php" method="POST"><input type="hidden" name="id" value="<?php echo $askare->getID(); ?>"><input type=submit value="Poista"></form></td>
             </tr>
         <?php endforeach; ?>

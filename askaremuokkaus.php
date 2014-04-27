@@ -23,7 +23,7 @@ if (isset($_POST['talleta'])) {
     $uusiaskare->setLuokat($_POST['askareenluokat']);
 
     //Tehdään toiminto syötettyjen tietojen perusteella
-    if ($uusiaskare->onkoKelvollinen() && isset($_POST['id'])) {
+    if ($uusiaskare->onkoKelvollinen()) {
         //Annetut tiedot kelpaavat eli päivitetään ne
         $uusiaskare->paivitaAskare();
         $vanhatluokat = Askare::getAskare($_POST['id'])->haeLuokat();
